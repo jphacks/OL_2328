@@ -3,10 +3,12 @@ export default interface UserData {
     id: string;
     name: string;
     technologies: string[];
+    skilledTechnologies: string[];
     bio: string;
     avatar: string;
     languages: string[];
-    swiped_people: string[];
+    // TODO: swiped_peopleを消す
+    swiped_people?: string[];
     github?: string;
     twitter?: string;
 }

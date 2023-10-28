@@ -29,6 +29,8 @@
     
         <slot />
     
+        <div class="mt-24"></div>
+
         <Tabbar class="left-0 bottom-0 fixed" icons>
             <TabbarLink onClick={() => { goto('/main/dm') }} active={data.url === "/main/dm"}>
                 <iconify-icon width="29" height="29" slot="icon" icon="ic:outline-message"></iconify-icon>

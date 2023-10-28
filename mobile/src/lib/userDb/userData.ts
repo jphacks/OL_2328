@@ -9,9 +9,9 @@ export const getDefaultUserData = (uid: string): UserData => {
         gender: "O",
         languages: [],
         technologies: [],
+        skilledTechnologies: [],
         id: uid,
         avatar: "",
-        swiped_people: [],
     };
 }
 

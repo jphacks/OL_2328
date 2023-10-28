@@ -6,8 +6,10 @@
     export let userData: UserData;
 
     let addingTechnology = false;
+    let addingSkilledTechnology = false;
 
     let newTechnology = "";
+    let newSkilledTechnology = "";
 </script>
 
 <Sheet 
@@ -22,8 +24,20 @@
             追加
         </Button>
     </Block>
-    
-   
+</Sheet>
+
+<Sheet
+    class="!w-full pb-safe"
+    opened={addingSkilledTechnology}
+    onBackdropClick={() => { addingSkilledTechnology = false; }}
+    >
+    <BlockTitle>スキルを追加</BlockTitle>
+    <Block>
+        <WrapperListInput label="追加するスキル" bind:value={newSkilledTechnology} type="text" />
+        <Button onClick={() => { userData.skilledTechnologies = [...userData.skilledTechnologies, newSkilledTechnology]; newSkilledTechnology = ""; addingSkilledTechnology = false; }}>
+            追加
+        </Button>
+    </Block>
 </Sheet>
 
 <BlockTitle>
@@ -79,5 +93,23 @@
             +
         </Chip>
     </Block>
+
+    <BlockTitle>スキル</BlockTitle>
+    <Block>
+        {#each userData.skilledTechnologies as technology}
+            <Chip
+            class="m-0.5"
+            deleteButton
+            onDelete={() => { userData.skilledTechnologies = userData.skilledTechnologies.filter((t) => t !== technology); }}
+            >
+                {technology}
+            </Chip>
+        {/each}
+
+        <Chip class="m-0.5" onClick={() => { addingSkilledTechnology = true; }}>
+            +
+        </Chip>
+    </Block>
 </List>
+
 
