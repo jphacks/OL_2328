@@ -6,7 +6,7 @@
 	import type UserData from "$lib/types/UserData";
 	import { setUserData } from "$lib/userDb/userData";
 	import { Block, Button } from "konsta/svelte";
-	import { Doc, docStore, userStore } from "sveltefire";
+	import { docStore, userStore } from "sveltefire";
 
     const user = userStore(auth);
     const profile = docStore<UserData>(firestore, `users/${$user?.uid}`);

@@ -2,8 +2,6 @@
 	import CenteredSpinner from '$lib/components/CenteredSpinner.svelte';
 	import {
 		Page,
-		Navbar,
-		NavbarBackLink,
 		Button,
 		Block,
 		BlockTitle,
@@ -11,7 +9,6 @@
 		Link,
 		Chip
 	} from 'konsta/svelte';
-	import Icon from '@iconify/svelte';
 
 	let cardVisible = true; // カードが表示されているかどうかを管理
 
@@ -71,13 +68,13 @@
 	<Block strong outlineIos class="space-y-2">
 		<div class="grid grid-cols-3 gap-x-4">
 			<Button large rounded class="k-color-brand-black" onclick={swipeLeft}
-				><Icon icon="dashicons:no" /></Button
+				><iconify-icon icon="dashicons:no" /></Button
 			>
 			<Button large rounded class="k-color-brand-blue" onclick={swipeUp}
-				><Icon icon="material-symbols:star" /></Button
+				><iconify-icon icon="material-symbols:star" /></Button
 			>
 			<Button large rounded class="k-color-brand-pink" onclick={swipeRight}
-				><Icon icon="mdi:heart" /></Button
+				><iconify-icon icon="mdi:heart" /></Button
 			>
 		</div>
 	</Block>
