@@ -4,8 +4,10 @@
     import CenteredSpinner from '$lib/components/CenteredSpinner.svelte';
 	import WrapperListInput from '$lib/components/wrappers/WrapperListInput.svelte';
 import { signInWithEmailAndPassword, type Auth, type UserCredential } from 'firebase/auth';
-    import { Block, BlockTitle, Button, List, ListInput, ListItem, Navbar, Page, Radio, Toggle } from 'konsta/svelte';
-	import { SignedIn, SignedOut } from 'sveltefire';
+    import { Block, BlockTitle, Button, List, Page } from 'konsta/svelte';
+	import { SignedIn, SignedOut, docStore } from 'sveltefire';
+	import { firestore } from '$lib/auth/firebaseApp';
+	import type UserData from '$lib/types/UserData';
     
     let email = "";
     let password = "";
@@ -34,8 +36,10 @@ import { signInWithEmailAndPassword, type Auth, type UserCredential } from 'fire
 <SignedOut let:auth>
     <Page class="justify-center align-middle">
         {#if signinPromise === null}
-            <BlockTitle class="text-5xl text-center justify-self-center" component="h1">
-                Login
+            <BlockTitle component="h1">
+                <span class="text-5xl">
+                    Login
+                </span>
             </BlockTitle>
         
             <List>

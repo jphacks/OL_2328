@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { auth } from "$lib/auth/firebaseApp";
+	import { auth, firestore } from "$lib/auth/firebaseApp";
 	import CenteredSpinner from "$lib/components/CenteredSpinner.svelte";
 	import Redirect from "$lib/components/Redirect.svelte";
 	import WrapperListInput from "$lib/components/wrappers/WrapperListInput.svelte";
+	import type UserData from "$lib/types/UserData";
+	import { getDefaultUserData, setUserData } from "$lib/userDb/userData";
 	import { createUserWithEmailAndPassword, type UserCredential } from "firebase/auth";
+	import { collection, doc, setDoc } from "firebase/firestore";
 	import { Block, BlockTitle, Button, List, Page } from "konsta/svelte";
     import { SignedIn, SignedOut } from "sveltefire";
 
@@ -28,7 +31,16 @@
                 signupPromise = null;
             });
     
-            signupPromise.then(() => {
+            signupPromise.then(async () => {
+                const user = auth.currentUser;
+
+                if (user === null) {
+                    alert("ユーザー登録に失敗しました。");
+                    return;
+                }
+
+                await setUserData(getDefaultUserData(user.uid), user.uid);
+            }).finally(() => {
                 signupPromise = null;
             });
     }
@@ -42,7 +54,7 @@
     <Page>
         {#if signupPromise === null}
             <BlockTitle>
-                <span class="text-4xl">Signup</span>
+                <span class="text-5xl">Signup</span>
             </BlockTitle>
 
             <List>
