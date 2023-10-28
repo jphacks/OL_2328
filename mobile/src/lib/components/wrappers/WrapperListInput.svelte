@@ -5,9 +5,13 @@
     export let label: string;
     export let type: string;
     export let placeholder = "";
+    let className = "";
+    export let inputClass = "";
+
+    export { className as class };
 </script>
 
-<ListInput onInput={(e) => { value = e.target.value; }} {label} {type} {placeholder}>
+<ListInput {value} {inputClass} class={className} onInput={(e) => { value = e.target.value; }} {label} {type} {placeholder}>
     <svelte:fragment slot="media">
         <slot name="media" />
     </svelte:fragment>
