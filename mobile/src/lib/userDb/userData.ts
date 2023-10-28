@@ -1,6 +1,6 @@
 import { firestore } from "$lib/auth/firebaseApp";
 import type UserData from "$lib/types/UserData";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const getDefaultUserData = (uid: string): UserData => {
     return {
@@ -22,4 +22,12 @@ export const setUserData = async (userData: UserData, uid: string) => {
         targetDoc,
         userData
     )
+}
+
+export const getUserData = async (uid: string): Promise<UserData> => {
+    const targetDoc = doc(firestore, `users/${uid}`);
+
+    const targetData = await getDoc(targetDoc);
+
+    return targetData.data() as UserData;
 }
