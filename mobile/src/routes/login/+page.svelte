@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Redirect from '$lib/components/Redirect.svelte';
-	import Spinner from '$lib/components/Spinner.svelte';
+    import CenteredSpinner from '$lib/components/CenteredSpinner.svelte';
+	import WrapperListInput from '$lib/components/wrappers/WrapperListInput.svelte';
 import { signInWithEmailAndPassword, type Auth, type UserCredential } from 'firebase/auth';
     import { Block, BlockTitle, Button, List, ListInput, ListItem, Navbar, Page, Radio, Toggle } from 'konsta/svelte';
 	import { SignedIn, SignedOut } from 'sveltefire';
@@ -37,24 +39,25 @@ import { signInWithEmailAndPassword, type Auth, type UserCredential } from 'fire
             </BlockTitle>
         
             <List>
-                <ListInput onInput={(e) => { email = e.target.value; }} label="メール" type="email">
+                <WrapperListInput bind:value={email} label="メール" type="email" placeholder="bob@gmail.com">
                     <iconify-icon width="25" height="25" slot="media" icon="ic:baseline-email"></iconify-icon>
-                </ListInput>
-                <ListInput onInput={(e) => { password = e.target.value; }} label="パスワード" type="password">
+                </WrapperListInput>
+
+                <WrapperListInput bind:value={password} label="パスワード" type="password">
                     <iconify-icon width="25" height="25" slot="media" icon="ic:baseline-lock"></iconify-icon>
-                </ListInput>
+                </WrapperListInput>
         
             </List>
         
             <Block>
                 <div class="flex flex-col gap-2">
                     <Button rounded onClick={(e) => { login(auth); }}>ログイン</Button>
-                    <Button rounded outline>新規登録</Button>
+                    <Button rounded outline onClick={(e) => { goto('/signup'); }}>新規登録</Button>
                 </div>
             </Block>
         {:else}
             {#await signinPromise}
-                <Spinner />
+                <CenteredSpinner />
             {/await}
         {/if}
     </Page>

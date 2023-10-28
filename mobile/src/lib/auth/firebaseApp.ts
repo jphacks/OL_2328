@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { browser } from "$app/environment";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCqAK3yoUE82yuEnrEzBAiLLO7NGKKp81M",
@@ -16,3 +17,7 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firestore = getFirestore(firebaseApp);
 export const auth = getAuth(firebaseApp);
 export const storage = getStorage(firebaseApp);
+
+if (browser) {
+  window.signout = () => auth.signOut();
+}
