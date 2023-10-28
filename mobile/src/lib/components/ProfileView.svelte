@@ -110,6 +110,11 @@
             +
         </Chip>
     </Block>
+
+
+    
+    <WrapperListInput label="Twitter" bind:value={userData.twitter} type="text" />
+    <WrapperListInput label="Github" bind:value={userData.github} type="text" />
 </List>
 
 
