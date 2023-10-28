@@ -4,7 +4,6 @@
     import { auth, firestore, storage } from "$lib/auth/firebaseApp";
     import "../app.css";
     import 'iconify-icon';
-	import Redirect from "$lib/components/Redirect.svelte";
 	import type { LayoutData } from "./$types";
 
     export let data: LayoutData;

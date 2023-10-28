@@ -15,13 +15,18 @@
 
 <SignedIn let:auth>
 	<Page>
-		<Navbar title="Tech Match" centerTitle>
-			<NavbarBackLink
+		<Navbar centerTitle>
+				<NavbarBackLink
 				slot="left"
+				class="my-auto"
 				onClick={(e) => {
 					history.back();
 				}}
 			/>
+			
+
+			<img slot="title" alt="Tech Match Logo" width="60" height="60" src="/tech-match-logo.png" />
+
 			<iconify-icon
 				class="mr-2"
 				width="25"

@@ -53,8 +53,11 @@
 <SignedOut let:auth>
     <Page>
         {#if signupPromise === null}
+            <img class="mx-auto w-1/2 mt-20" src="/tech-match-logo.png" alt="Tech Match Logo" />
+
+
             <BlockTitle>
-                <span class="text-5xl">Signup</span>
+                <span class="text-2xl">Signup</span>
             </BlockTitle>
 
             <List>

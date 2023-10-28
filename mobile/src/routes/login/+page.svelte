@@ -36,12 +36,17 @@ import { signInWithEmailAndPassword, type Auth, type UserCredential } from 'fire
 <SignedOut let:auth>
     <Page class="justify-center align-middle">
         {#if signinPromise === null}
+            
+        
+            <img class="mx-auto w-1/2 mt-20" src="/tech-match-logo.png" alt="Tech Match Logo" />
+
             <BlockTitle component="h1">
-                <span class="text-5xl">
+                <span class="text-2xl !justify-self-center">
                     Login
                 </span>
+                
             </BlockTitle>
-        
+
             <List>
                 <WrapperListInput bind:value={email} label="メール" type="email" placeholder="bob@gmail.com">
                     <iconify-icon width="25" height="25" slot="media" icon="ic:baseline-email"></iconify-icon>

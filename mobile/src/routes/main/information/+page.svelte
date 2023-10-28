@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { onMount } from 'svelte';
 
 	type Event = {
@@ -61,4 +61,4 @@
 	{/each}
 {:else}
 	<p>イベントが見つかりませんでした。</p>
-{/if}
+{/if} -->
