@@ -16,6 +16,7 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
+		"@iconify/svelte": "^3.1.4",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
@@ -42,6 +43,7 @@
 		"@capacitor/android": "^5.5.1",
 		"@capacitor/cli": "^5.5.1",
 		"@capacitor/core": "^5.5.1",
+		"axios": "^1.6.0",
 		"firebase": "^9.23.0",
 		"iconify-icon": "^1.0.8",
 		"konsta": "^3.1.1",
