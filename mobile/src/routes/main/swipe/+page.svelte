@@ -70,13 +70,13 @@
 	</div>
 	<Block strong outlineIos class="space-y-2">
 		<div class="grid grid-cols-3 gap-x-4">
-			<Button large rounded class="k-color-brand-black" onclick={swipeLeft}
+			<Button large rounded class="k-color-brand-black" onClick={swipeLeft}
 				><Icon icon="dashicons:no" /></Button
 			>
-			<Button large rounded class="k-color-brand-blue" onclick={swipeUp}
+			<Button large rounded class="k-color-brand-blue" onClick={swipeUp}
 				><Icon icon="material-symbols:star" /></Button
 			>
-			<Button large rounded class="k-color-brand-pink" onclick={swipeRight}
+			<Button large rounded class="k-color-brand-pink" onClick={swipeRight}
 				><Icon icon="mdi:heart" /></Button
 			>
 		</div>
