@@ -1,3 +1,8 @@
+export interface UserSwipe {
+    targetUid: string;
+    liked: boolean;
+}
+
 export default interface UserData {
     gender: "M" | "F" | "O";
     id: string;
@@ -8,7 +13,7 @@ export default interface UserData {
     avatar: string;
     languages: string[];
     // TODO: swiped_peopleを消す
-    swiped_people?: string[];
+    swiped_people?: UserSwipe[];
     github?: string;
     twitter?: string;
 }

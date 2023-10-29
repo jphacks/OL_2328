@@ -110,6 +110,15 @@
             +
         </Chip>
     </Block>
+
+
+    
+    <WrapperListInput label="Twitter" bind:value={userData.twitter} type="text">
+        <iconify-icon slot="media" icon="simple-icons:x"></iconify-icon>
+    </WrapperListInput>
+    <WrapperListInput label="Github" bind:value={userData.github} type="text" />
+
+    <WrapperListInput label="プロフィール画像" bind:value={userData.avatar} type="text" />
 </List>
 
 

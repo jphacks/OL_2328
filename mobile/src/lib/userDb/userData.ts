@@ -11,7 +11,7 @@ export const getDefaultUserData = (uid: string): UserData => {
         technologies: [],
         skilledTechnologies: [],
         id: uid,
-        avatar: "",
+        avatar: `avatars/${uid}.png`,
     };
 }
 

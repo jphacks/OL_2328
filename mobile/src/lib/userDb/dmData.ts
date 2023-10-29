@@ -2,11 +2,11 @@ import { browser } from "$app/environment";
 import { auth, firestore } from "$lib/auth/firebaseApp";
 import type { DM } from "$lib/types/DM";
 import type UserData from "$lib/types/UserData"
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { getUserData } from "./userData";
 import type { Message } from "$lib/types/Message";
 
-const constructDm = (user: UserData, target: UserData, id: string): DM => {
+const constructDm = (target: UserData, id: string): DM => {
     return {
         id,
         targetUid: target.id,
@@ -18,12 +18,14 @@ const constructDm = (user: UserData, target: UserData, id: string): DM => {
 export const createDm = async (user1: UserData, user2: UserData) => {
     const id = crypto.randomUUID();
 
-    const user1Dm: DM = constructDm(user1, user2, id);
-    const user2Dm: DM = constructDm(user2, user1, id);
+    const user1Dm: DM = constructDm(user2, id);
+    const user2Dm: DM = constructDm(user1, id);
 
     const user1Doc = doc(firestore, `users/${user1.id}/dms/${user1Dm.id}`);
     const user2Doc = doc(firestore, `users/${user2.id}/dms/${user2Dm.id}`);
 
+    // TODO: DMが既に存在してたら追加しない
+    
     await Promise.all([
         setDoc(user1Doc, user1Dm),
         setDoc(user2Doc, user2Dm),
