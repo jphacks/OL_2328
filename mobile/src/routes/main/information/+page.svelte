@@ -1,64 +1,48 @@
-<!-- <script lang="ts">
-	import { onMount } from 'svelte';
+<script lang="ts">
+  import { onMount } from 'svelte';
 
-	type Event = {
-		id: number;
-		title: string;
-		description: string;
-		public_url: string;
-		starts_at: string;
-		ends_at: string;
-		venue_name: string;
-		address: string;
-		lat: string;
-		long: string;
-		ticket_limit: number;
-		published_at: string;
-		updated_at: string;
-		group: number;
-		participants: number;
-		waitlisted: number;
-		// 他のプロパティをここに追加
-	};
+  let events = [];
 
-	let events: Event[] = [];
+  onMount(async () => {
+    const apiKey: string = 'vVfpPqeF32jjKE7HhN94';
+    const apiUrl: string = 'https://api.doorkeeper.jp/events';
 
-	async function fetchEvents() {
-		try {
-			const response = await fetch('https://api.doorkeeper.jp/events', {
-				headers: {
-					Authorization: ''
-				}
-			});
+    try {
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`
+        }
+      });
 
-			if (response.ok) {
-				const data = await response.json();
-				events = data;
-			} else {
-				console.error('イベントの取得に失敗しました');
-			}
-		} catch (error) {
-			console.error('エラー:', error);
-		}
-	}
+      if (!response.ok) {
+        throw new Error('failed');
+      }
 
-	onMount(fetchEvents);
+      const data = await response.json();
+      events = data;
+	  console.log(events);
+    } catch (error) {
+      console.error('failed:', error);
+    }
+  });
 </script>
 
 {#if events.length > 0}
-	{#each events as event (event.id)}
-		<div>
-			<h2>{event.title}</h2>
-			<p>{@html event.description}</p>
-			<p>開始日時: {event.starts_at}</p>
-			<p>終了日時: {event.ends_at}</p>
-			<p>場所: {event.venue_name}</p>
-			<p>住所: {event.address}</p>
-			<p>参加者数: {event.participants}</p>
-			<p>待機者数: {event.waitlisted}</p>
-			<a href={event.public_url}>詳細を見る</a>
-		</div>
-	{/each}
+  {#each events as event, i (i)}
+    <div>
+		
+      <h2>{event.event.title}</h2>
+      <p>{@html event.event.description}</p>
+      <p>開始日時: {event.event.starts_at}</p>
+      <p>終了日時: {event.event.ends_at}</p>
+      <p>場所: {event.event.venue_name}</p>
+      <p>住所: {event.event.address}</p>
+      <p>参加者数: {event.event.participants}</p>
+      <p>待機者数: {event.event.waitlisted}</p>
+      <a href={event.event.public_url}>詳細を見る</a>
+	  <p>----------------------------------</p>
+    </div>
+  {/each}
 {:else}
-	<p>イベントが見つかりませんでした。</p>
-{/if} -->
+  <p>イベントが見つかりませんでした。</p>
+{/if}
